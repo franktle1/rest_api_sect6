@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -15,8 +16,9 @@ app = Flask(__name__)
 
 app.secret_key = 'frank'
 #tells where the database is; that the database will be at the root folder of our project
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///data.db"
-
+#app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///data.db" # we do this so that our .db file will be saved to Heroku postgres dyno instead of being cleared out everytime it exits
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db') #THE DATABASE URL IS GOING TO BE FOUND ON HEROKU CONFIG VARIABLE under settings;
+#sqlite is passed as a second variable in case heroku not found
 # #THIS WAS commented out to use for web api on Heroku
 # #effect hte method below, run that method before the first request into this app
 # #flask decorator
