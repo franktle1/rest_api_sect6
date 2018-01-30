@@ -17,12 +17,13 @@ app.secret_key = 'frank'
 #tells where the database is; that the database will be at the root folder of our project
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///data.db"
 
-#effect hte method below, run that method before the first request into this app
-#flask decorator
-#before the first request runs, itll create data.db unless they exist already
-@app.before_first_request
-def create_tables():
-    db.create_all() #when this runs, it'll create data.db and all the tables in the file unless they exist already
+# #THIS WAS commented out to use for web api on Heroku 
+# #effect hte method below, run that method before the first request into this app
+# #flask decorator
+# #before the first request runs, itll create data.db unless they exist already
+# @app.before_first_request
+# def create_tables():
+#     db.create_all() #when this runs, it'll create data.db and all the tables in the file unless they exist already
 
 
 #this turns off the library tracker; turns off the flask sqlalchemy tracker and not the sqlalchemy trackers
