@@ -1,5 +1,5 @@
 from app import app
-from db import db
+from database import db
 
 db.init_app(app)
 #this is help wsgi to define db and prevenet circulr imports

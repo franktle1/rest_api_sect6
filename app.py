@@ -12,12 +12,12 @@ from resources.store import Store, StoreList
 
 
 app = Flask(__name__)
-api = Api(app)
+
 app.secret_key = 'frank'
 #tells where the database is; that the database will be at the root folder of our project
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///data.db"
 
-# #THIS WAS commented out to use for web api on Heroku 
+# #THIS WAS commented out to use for web api on Heroku
 # #effect hte method below, run that method before the first request into this app
 # #flask decorator
 # #before the first request runs, itll create data.db unless they exist already
@@ -30,6 +30,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///data.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_AUTH_URL_RULE'] = '/login'
 #app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds = 1800) #30 minutes
+api = Api(app)
+
 jwt = JWT(app, authenticate, identity)
 #app.config['JWT_AUTH_USERNAME_KEY'] = 'email'
 #authenticaktion key uses email instead of default username
